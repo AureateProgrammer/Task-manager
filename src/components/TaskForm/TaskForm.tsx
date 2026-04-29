@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { type FormEvent, useEffect, useState } from 'react';
 import type { TaskFormData, TaskFormErrors, TaskFormProps } from '../../types';
 import { hasValidationErrors, validateTaskForm } from '../../utils/taskUtils';
 
@@ -35,7 +35,7 @@ export const TaskForm = ({ onSubmit, initialValues, onCancel }: TaskFormProps) =
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
 
     const validation = validateTaskForm(formData);

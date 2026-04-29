@@ -182,3 +182,12 @@
     border-right-color: var(--border);
   }
 }
+
+div {
+  color: var(--text);
+  background: color var(--bg) a(transparent 0%);
+}
+
+body{
+  background: var(--bg);
+}
