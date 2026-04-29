@@ -10,8 +10,8 @@ export interface Task {
   description: string;
   status: TaskStatus;
   priority: TaskPriority;
-  dueDate: string;       // ISO date string "YYYY-MM-DD"
-  createdAt: string;     // ISO date-time string
+  dueDate: string;
+  createdAt: string;
 }
 
 export interface TaskFormData {
@@ -39,11 +39,23 @@ export interface SortState {
   direction: SortDirection;
 }
 
+export interface TaskStats {
+  total: number;
+  pending: number;
+  inProgress: number;
+  completed: number;
+  overdue: number;
+}
+
 export interface TaskItemProps {
   task: Task;
+  index: number;
+  total: number;
   onStatusChange: (id: string, status: TaskStatus) => void;
   onDelete: (id: string) => void;
   onEdit: (task: Task) => void;
+  onMoveUp: (id: string) => void;
+  onMoveDown: (id: string) => void;
 }
 
 export interface TaskListProps {
@@ -51,11 +63,13 @@ export interface TaskListProps {
   onStatusChange: (id: string, status: TaskStatus) => void;
   onDelete: (id: string) => void;
   onEdit: (task: Task) => void;
+  onMoveUp: (id: string) => void;
+  onMoveDown: (id: string) => void;
 }
 
 export interface TaskFormProps {
   onSubmit: (data: TaskFormData) => void;
-  initialValues?: Task;      // present when editing an existing task
+  initialValues?: Task;
   onCancel?: () => void;
 }
 
@@ -64,9 +78,27 @@ export interface TaskFilterProps {
   sort: SortState;
   onFilterChange: (filters: Partial<FilterState>) => void;
   onSortChange: (sort: Partial<SortState>) => void;
+  onClearFilters: () => void;
 }
 
 export interface DashboardProps {
+  tasks: Task[];
+  stats: TaskStats;
+  filters: FilterState;
+  sort: SortState;
+  editingTask: Task | null;
   theme: Theme;
   onThemeToggle: () => void;
+  onSubmitTask: (data: TaskFormData) => void;
+  onCancelEdit: () => void;
+  onEditTask: (task: Task) => void;
+  onStatusChange: (id: string, status: TaskStatus) => void;
+  onDeleteTask: (id: string) => void;
+  onMoveUp: (id: string) => void;
+  onMoveDown: (id: string) => void;
+  onFilterChange: (filters: Partial<FilterState>) => void;
+  onSortChange: (sort: Partial<SortState>) => void;
+  onClearFilters: () => void;
+  onExport: () => void;
+  onImport: (file: File) => void;
 }
