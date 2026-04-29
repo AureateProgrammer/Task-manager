@@ -1,8 +1,8 @@
 import react from 'react';
-import {taskFilterProps} from '../types';
+import {taskFilterProps} from './types';
 
 import React from "react";
-import { TaskFilterProps } from "../../types";
+import type { TaskFilterProps } from "../../types";
 
 export const TaskFilter: React.FC<TaskFilterProps> = ({
   onFilterChange
